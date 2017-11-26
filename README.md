@@ -24,8 +24,11 @@ Adjacency Matrix <br />
 Shortest Path Search: <br />
 Enter Node 1: 1 <br />
 Enter Node 2: 2 <br />
-Vertex	  Distance	Path <br />
 <br />
-1->1		0 		 1 <br />
-*1->2		3 		 1 3 2 <br />
-1->3		1 		 1 3 <br />
+<pre>
+Vertex	  Distance	Path
+
+1->1	  0 	        1
+*1->2	  3 	        1 3 2
+1->3	  1 	        1 3
+</pre>
