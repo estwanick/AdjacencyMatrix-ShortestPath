@@ -8,9 +8,9 @@ public class Graph {
 
     public Graph(int V) {
         if (V < 0) throw new RuntimeException("Number of vertices must be nonnegative");
-        this.Vertices = V;
+        this.Vertices = V + 1;
         this.E = 0;
-        this.adj = new int[V][V];
+        this.adj = new int[Vertices][Vertices];
     }
 
 
@@ -21,16 +21,12 @@ public class Graph {
     }
 
     public void printAdjMatrix() {
-        for (int i = 0; i < adj[0].length - 1; i++) {
-            for (int y = 0; y < adj[adj[0].length - 1].length - 1; y++) {
+        for (int i = 0; i < adj[0].length; i++) {
+            for (int y = 0; y < adj[adj[0].length - 1].length; y++) {
                 System.out.print(adj[i][y]);
             }
             System.out.println("");
         }
-    }
-
-    public void shortestPath(int v1, int v2) {
-        shortestPath(v1);
     }
 
     private int minDistance(int distance[], boolean spSet[]) {
@@ -47,7 +43,7 @@ public class Graph {
         return minIndex;
     }
 
-    private void shortestPath(int src) {
+    public void shortestPath(int src, int dest) {
         int distance[] = new int[Vertices];
         boolean spSet[] = new boolean[Vertices];
         int parent[] = new int[Vertices];
@@ -74,14 +70,17 @@ public class Graph {
                 }
             }
         }
-        printSolution(distance, parent);
+        printSolution(src, distance, parent, dest);
     }
 
-    private void printSolution(int dist[], int parent[]) {
+    private void printSolution(int src, int dist[], int parent[], int dest) {
         System.out.println("Vertex\t  Distance\tPath");
-        int src = 1;
         for (int i = 1; i < Vertices; i++) {
-            System.out.print("\n" + src + "->" + i + "\t\t" + dist[i] + " \t\t");
+            System.out.println("");
+            if(i == dest) {
+                System.out.print("*");
+            }
+            System.out.print(src + "->" + i + "\t\t" + dist[i] + " \t\t");
             printPath(parent, i);
         }
     }
